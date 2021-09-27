@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="map"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="false"/>
+  <arg name="config_file" default="$(find tc_common_configs)/config/map/map.yaml"/>
+  <arg name="planner_map_file" default="$(find tc_maps)/data/maps/tsudanuma/v1/planner/map.yaml"/>
+  <arg name="localization_map_file" default="$(find tc_maps)/data//maps/tsudanuma/v1/localization/map.yaml"/>
+  <arg name="pcd_file" default="$(find tc_maps)/data/maps/tsudanuma/v1/cloud/map.pcd"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="map_server" type="map_server" name="planner_map_server" args="$(arg planner_map_file)" output="$(arg output)" respawn="$(arg respawn)">
+      <rosparam command="load" file="$(arg config_file)"/>
+      <remap from="map" to="~/map"/>
+      <remap from="map_metadata" to="~/map_metadata"/>
+    </node>
+    <node pkg="map_server" type="map_server" name="localization_map_server" args="$(arg localization_map_file)" output="$(arg output)" respawn="$(arg respawn)">
+      <rosparam command="load" file="$(arg config_file)"/>
+      <remap from="map" to="~/map"/>
+      <remap from="map_metadata" to="~/map_metadata"/>
+    </node>
+    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(arg pcd_file)" output="$(arg output)" respawn="$(arg respawn)">
+      <rosparam command="load" file="$(arg config_file)"/>
+      <remap from="cloud_pcd" to="~/map"/>
+    </node>
+  </group>
+</launch>

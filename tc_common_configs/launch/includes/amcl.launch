@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="amcl"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="config_file" default="$(find tc_common_configs)/config/localization/amcl.yaml"/>
+  <arg name="map_topic" default="map"/>
+  <arg name="scan_topic" default="scan"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="amcl" type="amcl" name="amcl" output="$(arg output)" respawn="$(arg respawn)">
+      <rosparam command="load" file="$(arg config_file)"/>
+      <remap from="map" to="$(arg map_topic)"/>
+      <remap from="scan" to="$(arg scan_topic)"/>
+    </node>
+  </group>
+</launch>

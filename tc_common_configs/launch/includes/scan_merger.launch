@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="scan_merger"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="config_file" default="$(find tc_common_configs)/config/laserscan_multi_merger/beta.yaml"/>
+  <arg name="laserscan_topics" default="scan"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="ira_laser_tools" type="laserscan_multi_merger" name="laserscan_multi_merger">
+      <rosparam command="load" file="$(arg config_file)"/>
+      <param name="laserscan_topics" value="$(arg laserscan_topics)"/>
+    </node>
+  </group>
+</launch>

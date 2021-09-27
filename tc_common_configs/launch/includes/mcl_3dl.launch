@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="mcl_3dl"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="config_file" default="$(find tc_common_configs)/config/localization/mcl_3dl.yaml"/>
+  <arg name="map_topic" default="map"/>
+  <arg name="odom_topic" default="odom"/>
+  <arg name="imu_topic" default="imu"/>
+  <arg name="points_topic" default="points"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="mcl_3dl" type="mcl_3dl" name="mcl_3dl" output="$(arg output)" respawn="$(arg respawn)">
+      <rosparam command="load" file="$(arg config_file)"/>
+      <remap from="mapcloud" to="$(arg map_topic)"/>
+      <remap from="odom" to="$(arg odom_topic)"/>
+      <remap from="imu/data" to="$(arg imu_topic)"/>
+      <remap from="cloud" to="$(arg points_topic)"/>
+    </node>
+  </group>
+</launch>

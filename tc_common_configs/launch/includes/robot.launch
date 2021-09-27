@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="hokuyo"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="enable_joint_state_publisher" default="false"/>
+  <arg name="description_file"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <param name="robot_description" command="$(find xacro)/xacro $(arg description_file)"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="$(arg output)" respawn="$(arg respawn)">
+    </node>
+    <group if="$(arg enable_joint_state_publisher)">
+      <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="$(arg output)" respawn="$(arg respawn)">
+        <param name="publish_default_posstions" value="true"/>
+        <param name="publish_default_velocities" value="true"/>
+        <param name="publish_default_efforts" value="true"/>
+      </node>
+    </group>
+  </group>
+</launch>

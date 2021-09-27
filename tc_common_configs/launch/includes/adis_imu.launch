@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="adis"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="device" default=""/>
+  <arg name="config_file" default="$(find tc_common_configs)/config/adis/imu.yaml"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="adi_driver" type="adis16470_node" name="adis16470_node" output="$(arg output)" respawn="$(arg respawn)">
+      <param name="device" value="$(arg device)" unless="$(eval device=='')"/>
+      <rosparam command="load" file="$(arg config_file)" unless="$(eval config_file=='')"/>
+      <remap from="adis16470_node/data_raw" to="~/data_raw"/>
+      <remap from="adis16470_node/temperature" to="~/temperature"/>
+    </node>
+  </group>
+</launch>

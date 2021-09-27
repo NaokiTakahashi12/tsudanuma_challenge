@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="ypspur"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="port" default="/dev/sensors/icart-mini"/>
+  <arg name="param_file" default="$(find tc_common_configs)/config/ypspur/beta.yaml"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="ypspur_ros" type="ypspur_ros" name="ypspur_ros" output="$(arg output)" respawn="$(arg respawn)">
+      <param name="compatible" value="1"/>
+      <param name="port" value="$(arg port)"/>
+      <param name="param_file" value="$(arg param_file)"/>
+    </node>
+  </group>
+</launch>

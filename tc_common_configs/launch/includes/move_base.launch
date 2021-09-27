@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="navigation"/>
+  <arg name="respawn" default="true"/>
+  <arg name="output" default="screen"/>
+  <arg name="odom_topic" default="odom"/>
+  <arg name="cmd_vel_topic" default="cmd_vel"/>
+  <arg name="pose_topic" default="robot_pose"/>
+  <arg name="map_topic" default="map"/>
+  <arg name="goal_topic" default="goal"/>
+  <arg name="global_frame" default="map"/>
+  <arg name="robot_base_frame" default="base_link"/>
+  <arg name="costmap_common_file" default="$(find tc_common_configs)/config/move_base/costmap_common.yaml"/>
+  <arg name="local_costmap_file" default="$(find tc_common_configs)/config/move_base/local_costmap.yaml"/>
+  <arg name="global_costmap_file" default="$(find tc_common_configs)/config/move_base/global_costmap.yaml"/>
+  <arg name="trajecotry_local_planner_file" default="$(find tc_common_configs)/config/move_base/trajectory_local_planner.yaml"/>
+  <arg name="dwa_local_planner_file" default="$(find tc_common_configs)/config/move_base/dwa_local_planner.yaml"/>
+  <arg name="move_base_file" default="$(find tc_common_configs)/config/move_base/move_base.yaml"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="move_base" type="move_base" name="move_base" output="$(arg output)" respawn="$(arg respawn)">
+      <rosparam command="load" file="$(arg costmap_common_file)" ns="global_costmap"/>
+      <rosparam command="load" file="$(arg costmap_common_file)" ns="local_costmap"/>
+      <rosparam command="load" file="$(arg local_costmap_file)"/>
+      <rosparam command="load" file="$(arg global_costmap_file)"/>
+      <rosparam command="load" file="$(arg trajecotry_local_planner_file)"/>
+      <rosparam command="load" file="$(arg dwa_local_planner_file)"/>
+      <rosparam command="load" file="$(arg move_base_file)"/>
+      <remap from="odom" to="$(arg odom_topic)"/>
+      <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+      <remap from="map" to="$(arg map_topic)"/>
+      <remap from="move_base_simple/goal" to="$(arg goal_topic)"/>
+    </node>
+    <node pkg="robot_pose_publisher" type="robot_pose_publisher" name="robot_pose_publisher" output="$(arg output)" respawn="$(arg respawn)">
+      <param name="map_frame" value="$(arg global_frame)"/>
+      <param name="base_frame" value="$(arg robot_base_frame)"/>
+      <param name="publish_frequency" value="10"/>
+      <param name="is_stamped" value="true"/>
+      <remap from="robot_pose" to="$(arg pose_topic)"/>
+    </node>
+  </group>
+</launch>

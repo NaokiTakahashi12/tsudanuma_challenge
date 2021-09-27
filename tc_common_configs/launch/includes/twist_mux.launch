@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="twist_mux"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="config_file" default="$(find tc_common_configs)/config/twist_mux/beta.yaml"/>
+  <arg name="output_cmd_vel_topic" default="cmd_vel"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="twist_mux" type="twist_mux" name="twist_mux" output="$(arg output)" respawn="$(arg respawn)">
+      <rosparam command="load" file="$(arg config_file)"/>
+      <remap from="cmd_vel_out" to="$(arg output_cmd_vel_topic)"/>
+    </node>
+  </group>
+</launch>

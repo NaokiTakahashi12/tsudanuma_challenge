@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="hokuyo"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="serial_port" default=""/>
+  <arg name="ip_address" default=""/>
+  <arg name="config_file" default="$(find tc_common_configs)/config/hokuyo/urg.yaml"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="urg_node" type="urg_node" name="urg_node" output="$(arg output)" respawn="$(arg respawn)">
+      <param name="serial_port" value="$(arg serial_port)" unless="$(eval serial_port=='')"/>
+      <param name="ip_address" value="$(arg ip_address)" unless="$(eval ip_address=='')"/>
+      <rosparam command="load" file="$(arg config_file)" unless="$(eval config_file=='')"/>
+    </node>
+  </group>
+</launch>

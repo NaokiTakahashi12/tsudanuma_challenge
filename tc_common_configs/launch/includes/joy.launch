@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="joystick"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="config_file" default="$(find tc_common_configs)/config/joy/beta.yaml"/>
+  <arg name="teleop_config_file" default="$(find teleop_twist_joy)/config/xbox.config.yaml"/>
+  <arg name="port" default="/dev/input/js0"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <node pkg="joy" type="joy_node" name="joy" output="$(arg output)" respawn="$(arg respawn)">
+      <param name="dev" value="$(arg port)"/>
+      <!--
+      <rosparam command="load" file="$(arg config_file)"/>
+      -->
+    </node>
+    <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node" output="$(arg output)" respawn="$(arg respawn)">
+      <rosparam command="load" file="$(arg teleop_config_file)"/>
+    </node>
+  </group>
+</launch>
