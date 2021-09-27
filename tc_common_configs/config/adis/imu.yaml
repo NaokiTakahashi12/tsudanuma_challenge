@@ -1,0 +1,5 @@
+frame_id: imu
+device: /dev/sensors/imu16465
+burst_mode: false
+publish_temperature: false
+rate: 50

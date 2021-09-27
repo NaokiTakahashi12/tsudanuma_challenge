@@ -1,0 +1,46 @@
+obstacles_layer:
+  enabled: true
+  obstacle_range: 7.5
+  raytrace_range: 3.5
+  inflation_radius: 0.4
+  combination_method: 0
+  observation_sources: front_laser_scan rear_laser_scan velodyne_laser_scan
+  front_laser_scan:
+    data_type: LaserScan
+    sensor_frame: base_link
+    marking: true
+    clearing: true
+    inf_is_valid: false
+    min_obstacle_height: -0.03
+    max_obstacle_height: 1.5
+    topic: /beta/front_urg/scan
+  rear_laser_scan:
+    data_type: LaserScan
+    sensor_frame: base_link
+    marking: true
+    clearing: true
+    inf_is_valid: false
+    min_obstacle_height: -0.8
+    max_obstacle_height: 1.5
+    topic: /beta/rear_urg/scan
+  velodyne_laser_scan:
+    data_type: LaserScan
+    sensor_frame: base_link
+    marking: true
+    clearing: true
+    inf_is_valid: false
+    min_obstacle_height: -0.03
+    max_obstacle_height: 1.5
+    topic: /beta/velodyne/scan
+planner_map_layer:
+  enabled: true
+  use_maximum: true
+  subscribe_to_updates: false
+  trinary_costmap: true
+  map_topic: map
+inflation_layer:
+  enabled: true
+  use_maximum: true
+  inflate_unknown: true
+  inflation_radius: 0.1
+  cost_scaling_factor: 1.5

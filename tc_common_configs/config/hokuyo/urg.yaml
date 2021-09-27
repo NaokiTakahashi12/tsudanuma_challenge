@@ -1,0 +1,13 @@
+frame_id: hokuyo_laser
+ip_address: ""
+ip_port: 10940
+serial_port: /dev/sensors/hokuyo_H0803606
+serial_baud: 115200
+calibrate_time: false
+synchronize_time: true
+publish_intencity: true
+publish_multiecho: false
+error_limit: 4
+diagnostics_tolerance: 0.05
+diagnostics_window_time: 5.0
+get_detailed_status: false
