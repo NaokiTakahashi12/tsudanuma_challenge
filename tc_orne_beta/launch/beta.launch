@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Arguments -->
+  <arg name="namespace" default="beta"/>
+  <arg name="output" default="screen"/>
+  <arg name="respawn" default="true"/>
+  <arg name="description_file" default="$(find tc_orne_beta)/models/urdf/orne_beta.urdf"/>
+  <arg name="enable_joint_state_publisher" default="true"/>
+  <!-- Robot Model -->
+  <include file="$(find tc_common_configs)/launch/includes/robot.launch">
+    <arg name="namespace" value="$(arg namespace)"/>
+    <arg name="output" value="$(arg output)"/>
+    <arg name="respawn" value="$(arg respawn)"/>
+    <arg name="description_file" default="$(arg description_file)"/>
+    <arg name="enable_joint_state_publisher" value="$(arg enable_joint_state_publisher)"/>
+  </include>
+  <group ns="$(arg namespace)" clear_params="true">
+    <!-- Sensors -->
+    <include file="$(find tc_common_configs)/launch/includes/ypspur.launch">
+      <arg name="namespace" value="ypspur"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+      <arg name="param_file" value="$(find tc_orne_beta)/config/ypspur/beta.yaml"/>
+    </include>
+    <include file="$(find tc_common_configs)/launch/includes/adis_imu.launch">
+      <arg name="namespace" value="center_imu"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="false"/>
+      <arg name="config_file" value="$(find tc_common_configs)/config/adis/imu.yaml"/>
+    </include>
+    <include file="$(find tc_common_configs)/launch/includes/velodyne.launch">
+      <arg name="namespace" value="velodyne"/>
+    </include>
+    <include file="$(find tc_common_configs)/launch/includes/urg.launch">
+      <arg name="namespace" value="front_urg"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+      <arg name="config_file" value="$(find tc_common_configs)/config/hokuyo/front_urg.yaml"/>
+    </include>
+    <include file="$(find tc_common_configs)/launch/includes/urg.launch">
+      <arg name="namespace" value="rear_urg"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+      <arg name="config_file" value="$(find tc_common_configs)/config/hokuyo/rear_urg.yaml"/>
+    </include>
+    <include file="$(find tc_common_configs)/launch/includes/scan_merger.launch">
+      <arg name="namespace" value="scan_merger"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+      <arg name="config_file" value="$(find tc_orne_beta)/config/laserscan_multi_merger/beta.yaml"/>
+      <arg name="laserscan_topics" value="/$(arg namespace)/front_urg/scan $(arg namespace)/rear_urg/scan /$(arg namespace)/velodyne/scan"/>
+    </include>
+    <!-- Maps -->
+    <include file="$(find tc_common_configs)/launch/includes/map.launch">
+      <arg name="namespace" value="map"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+    </include>
+    <!-- Localization -->
+    <include file="$(find dev)/launch/includes/mcl_3dl.launch">
+      <arg name="namespace" value="mcl_3dl"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+      <arg name="points_topic" value="/$(arg namespace)/velodyne/velodyne_points"/>
+      <arg name="map_topic" value="/$(arg namespace)/map/pcd_to_pointcloud/map"/>
+      <arg name="imu_topic" value="/$(arg namespace)/center_imu/adis16470_node/data_raw"/>
+      <arg name="odom_topic" value="/$(arg namespace)/ypspur/odom"/>
+    </include>
+    <!-- Planner -->
+    <include file="$(find tc_common_configs)/launch/includes/move_base.launch">
+      <arg name="namespace" value="navigation"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+      <arg name="odom_topic" value="/$(arg namespace)/ypspur/odom"/>
+      <arg name="map_topic" value="/$(arg namespace)/map/planner_map_server/map"/>
+      <arg name="goal_topic" value="/move_base_simple/goal"/>
+    </include>
+    <!-- Utility -->
+    <include file="$(find tc_common_configs)/launch/includes/joy.launch">
+      <arg name="namespace" value="joystick"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="false"/>
+    </include>
+    <include file="$(find tc_common_configs)/launch/includes/twist_mux.launch">
+      <arg name="namespace" value="twist_mux"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+      <arg name="config_file" value="$(find tc_orne_beta)/config/twist_mux/beta.yaml"/>
+      <arg name="output_cmd_vel_topic" value="/$(arg namespace)/ypspur/cmd_vel"/>
+    </include>
+  </group>
+</launch>

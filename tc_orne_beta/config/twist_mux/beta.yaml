@@ -1,0 +1,23 @@
+topics:
+-
+  name: move_base
+  topic: /beta/navigation/cmd_vel
+  timeout: 1.0
+  priority: 10
+-
+  name: joystick
+  topic: /beta/joystick/cmd_vel
+  timeout: 0.5
+  priority: 100
+-
+  name: white_line_adjustment
+  topic: /beta/white_line_adjustment/cmd_vel
+  timeout: 0.5
+  priority: 90
+
+#locks:
+#  -
+#  name: pause
+#  topic: pause_navigation
+#  timeout: 0.0
+#  priority: 100

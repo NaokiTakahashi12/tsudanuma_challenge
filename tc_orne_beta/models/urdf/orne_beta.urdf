@@ -1,0 +1,606 @@
+<?xml version="1.0"?>
+<robot name="orne_beta">
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+  </link>
+  <link name="electrical_unit_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+      <mass value="8.5"/>
+    </inertial>
+    <visual name="electrical_unit_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.59 0.35 0.25"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 1.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision name="electrical_unit_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.59 0.35 0.25"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="computer_unit_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+      <mass value="0.5"/>
+    </inertial>
+    <visual name="computer_unit_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.39 0.39 0.39"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 1.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision name="computer_unit_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.39 0.39 0.39"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_wheel_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+      <mass value="0.5"/>
+    </inertial>
+    <visual name="left_wheel_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="1.571 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.157" length="0.04"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.0 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision name="left_wheel_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="1.571 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.157" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="right_wheel_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+      <mass value="0.5"/>
+    </inertial>
+    <visual name="right_wheel_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="1.571 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.157" length="0.04"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.0 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision name="right_wheel_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="1.571 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.157" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_free_wheel_base_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+      <mass value="0.5"/>
+    </inertial>
+    <visual name="left_free_wheel_base_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.02"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision name="left_free_wheel_base_colision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_free_wheel_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+      <mass value="0.5"/>
+    </inertial>
+    <visual name="left_free_wheel_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="1.571 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.02"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision name="left_free_wheel_colision">
+      <origin xyz="0.0 0.0 0.0" rpy="1.571 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="right_free_wheel_base_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+      <mass value="0.5"/>
+    </inertial>
+    <visual name="right_free_wheel_base_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.02"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision name="right_free_wheel_base_colision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="right_free_wheel_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+      <mass value="0.5"/>
+    </inertial>
+    <visual name="right_free_wheel_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="1.571 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.02"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision name="right_free_wheel_colision">
+      <origin xyz="0.0 0.0 0.0" rpy="1.571 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="velodyne">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.4"/>
+    </inertial>
+    <visual name="velodyne_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.08"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision name="velodyne_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.08"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="front_camera">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.4"/>
+    </inertial>
+    <visual name="front_camera_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.02 0.12 0.02"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision name="front_camera_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.02 0.12 0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="front_laser_scan">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.4"/>
+    </inertial>
+    <visual name="front_laser_scan_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.07"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision name="front_laser_scan_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.07"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="rear_laser_scan">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.4"/>
+    </inertial>
+    <visual name="rear_laser_scan_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.07"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision name="rear_laser_scan_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.07"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="imu">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.4"/>
+    </inertial>
+    <visual name="imu_visual">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.02 0.02 0.01"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision name="imu_collision">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.02 0.02 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="third_person_camera">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.4"/>
+    </inertial>
+  </link>
+  <joint name="base_to_electrical_joint" type="fixed">
+    <origin xyz="0.2 0.0 -0.15" rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="electrical_unit_link"/>
+  </joint>
+  <joint name="electrical_to_computer_joint" type="fixed">
+    <origin xyz="-0.1 0.0 0.325" rpy="0.0 0.0 0.0"/>
+    <parent link="electrical_unit_link"/>
+    <child link="computer_unit_link"/>
+  </joint>
+  <joint name="left_wheel_joint" type="revolute">
+    <origin xyz="0.025 0.2 -0.1" rpy="0.0 0.0 0.0"/>
+    <limit lower="-1e16" upper="1e16" effort="0.5" velocity="8"/>
+    <parent link="electrical_unit_link"/>
+    <child link="left_wheel_link"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+  <joint name="right_wheel_joint" type="revolute">
+    <origin xyz="0.025 -0.2 -0.1" rpy="0.0 0.0 0.0"/>
+    <limit lower="-1e16" upper="1e16" effort="0.5" velocity="8"/>
+    <parent link="electrical_unit_link"/>
+    <child link="right_wheel_link"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+  <joint name="left_free_wheel_base_joint" type="revolute">
+    <origin xyz="-0.25 0.1 -0.14" rpy="0.0 0.0 0.0"/>
+    <limit lower="-1e16" upper="1e16" effort="0.0" velocity="0.0"/>
+    <parent link="electrical_unit_link"/>
+    <child link="left_free_wheel_base_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+  <joint name="left_free_wheel_joint" type="revolute">
+    <origin xyz="-0.03 0.0 -0.075" rpy="0.0 0.0 0.0"/>
+    <limit lower="-1e16" upper="1e16" effort="0.0" velocity="0.0"/>
+    <parent link="left_free_wheel_base_link"/>
+    <child link="left_free_wheel_link"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+  <joint name="right_free_wheel_base_joint" type="revolute">
+    <origin xyz="-0.25 -0.1 -0.14" rpy="0.0 0.0 0.0"/>
+    <limit lower="-1e16" upper="1e16" effort="0.0" velocity="0.0"/>
+    <parent link="electrical_unit_link"/>
+    <child link="right_free_wheel_base_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+  <joint name="right_free_wheel_joint" type="revolute">
+    <origin xyz="-0.03 0.0 -0.075" rpy="0.0 0.0 0.0"/>
+    <limit lower="-1e16" upper="1e16" effort="0.0" velocity="0.0"/>
+    <parent link="right_free_wheel_base_link"/>
+    <child link="right_free_wheel_link"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+  <joint name="velodyne_joint" type="fixed">
+    <origin xyz="0.2 0.0 0.35" rpy="0.0 0.0 0.0"/>
+    <parent link="computer_unit_link"/>
+    <child link="velodyne"/>
+  </joint>
+  <joint name="front_camera_joint" type="fixed">
+    <origin xyz="0.24 0.0 0.15" rpy="0.0 0.0 0.0"/>
+    <parent link="computer_unit_link"/>
+    <child link="front_camera"/>
+  </joint>
+  <joint name="front_laser_scan_joint" type="fixed">
+    <origin xyz="0.235 0.0 0.07" rpy="0.0 0.0 0.0"/>
+    <parent link="computer_unit_link"/>
+    <child link="front_laser_scan"/>
+  </joint>
+  <joint name="rear_laser_scan_joint" type="fixed">
+    <origin xyz="-0.2 0.0 -0.38" rpy="0.0 0.0 1.57"/>
+    <parent link="computer_unit_link"/>
+    <child link="rear_laser_scan"/>
+  </joint>
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="0.05 0.0 0.05" rpy="0.0 0.0 0.0"/>
+    <parent link="electrical_unit_link"/>
+    <child link="imu"/>
+  </joint>
+  <joint name="third_person_camera_joint" type="fixed">
+    <origin xyz="-1.5 0.0 1.0" rpy="0.0 0.25 0.0"/>
+    <parent link="base_link"/>
+    <child link="third_person_camera"/>
+  </joint>
+  <gazebo reference="imu">
+    <sensor name="imu" type="imu">
+      <always_on>1</always_on>
+      <update_rate>200</update_rate>
+      <visualize>false</visualize>
+      <imu>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.1</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.1</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.2</stddev>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.1</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.1</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.2</stddev>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+  </gazebo>
+  <gazebo reference="velodyne">
+    <sensor name="velodyne" type="gpu_lidar">
+      <alwaysOn>1</alwaysOn>
+      <update_rate>10</update_rate>
+      <visualize>false</visualize>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>1875</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.141592</min_angle>
+            <max_angle>3.141592</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>16</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.261799</min_angle>
+            <max_angle>0.261799</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>100.0</max>
+          <resolution>0.001</resolution>
+        </range>
+        <noise type="gaussian">
+          <mean>0.0</mean>
+          <stddev>0.05</stddev>
+        </noise>
+      </lidar>
+    </sensor>
+  </gazebo>
+  <gazebo reference="front_camera">
+    <sensor name="front_camera" type="camera">
+      <always_on>1</always_on>
+      <update_rate>30</update_rate>
+      <visualize>false</visualize>
+      <camera>
+        <horizontal_fov>1.547</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise type="none">
+          <mean>0.0</mean>
+          <stddev>0.0</stddev>
+        </noise>
+      </camera>
+    </sensor>
+  </gazebo>
+  <gazebo reference="front_laser_scan">
+    <sensor name="front_laser_scan" type="gpu_lidar">
+      <alwaysOn>1</alwaysOn>
+      <update_rate>10</update_rate>
+      <visualize>false</visualize>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>1875</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.141592</min_angle>
+            <max_angle>3.141592</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>30.0</max>
+          <resolution>0.001</resolution>
+        </range>
+        <noise type="gaussian">
+          <mean>0.0</mean>
+          <stddev>0.05</stddev>
+        </noise>
+      </lidar>
+    </sensor>
+  </gazebo>
+  <gazebo reference="rear_laser_scan">
+    <sensor name="rear_laser_scan" type="gpu_lidar">
+      <alwaysOn>1</alwaysOn>
+      <update_rate>10</update_rate>
+      <visualize>false</visualize>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>1875</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.141592</min_angle>
+            <max_angle>3.141592</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>30.0</max>
+          <resolution>0.001</resolution>
+        </range>
+        <noise type="gaussian">
+          <mean>0.0</mean>
+          <stddev>0.05</stddev>
+        </noise>
+      </lidar>
+    </sensor>
+  </gazebo>
+  <gazebo>
+    <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher"/>
+    <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.39</wheel_separation>
+      <wheel_radius>0.157</wheel_radius>
+      <odom_publish_frequency>20</odom_publish_frequency>
+    </plugin>
+    <plugin filename="libignition-gazebo-wheel-slip-system.so" name="ignition::gazebo::systems::WheelSlip">
+      <wheel link_name="left_free_wheel_link">
+        <slip_compliance_lateral>1</slip_compliance_lateral>
+        <slip_compliance_longitudinal>1</slip_compliance_longitudinal>
+        <wheel_normal_force>19</wheel_normal_force>
+        <wheel_radius>0.04</wheel_radius>
+      </wheel>
+      <wheel link_name="right_free_wheel_link">
+        <slip_compliance_lateral>1</slip_compliance_lateral>
+        <slip_compliance_longitudinal>1</slip_compliance_longitudinal>
+        <wheel_normal_force>19</wheel_normal_force>
+        <wheel_radius>0.04</wheel_radius>
+      </wheel>
+      <wheel link_name="left_wheel_link">
+        <slip_compliance_lateral>1</slip_compliance_lateral>
+        <slip_compliance_longitudinal>1</slip_compliance_longitudinal>
+        <wheel_normal_force>29</wheel_normal_force>
+        <wheel_radius>0.15</wheel_radius>
+      </wheel>
+      <wheel link_name="right_wheel_link">
+        <slip_compliance_lateral>1</slip_compliance_lateral>
+        <slip_compliance_longitudinal>1</slip_compliance_longitudinal>
+        <wheel_normal_force>29</wheel_normal_force>
+        <wheel_radius>0.15</wheel_radius>
+      </wheel>
+    </plugin>
+  </gazebo>
+  <gazebo reference="third_person_camera">
+    <sensor name="third_person_camera" type="camera">
+      <always_on>1</always_on>
+      <update_rate>30</update_rate>
+      <visualize>false</visualize>
+      <camera>
+        <horizontal_fov>1.547</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise type="none">
+          <mean>0.0</mean>
+          <stddev>0.0</stddev>
+        </noise>
+      </camera>
+    </sensor>
+  </gazebo>
+</robot>
