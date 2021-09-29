@@ -50,6 +50,16 @@
       <arg name="config_file" value="$(find tc_orne_beta)/config/laserscan_multi_merger/beta.yaml"/>
       <arg name="laserscan_topics" value="/$(arg namespace)/front_urg/scan $(arg namespace)/rear_urg/scan /$(arg namespace)/velodyne/scan"/>
     </include>
+    <include file="$(find tc_common_configs)/launch/includes/realsense.launch">
+      <arg name="namespace" value="realsense"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+    </include>
+    <include file="$(find tc_common_configs)/launch/includes/system_monitor.launch">
+      <arg name="namespace" value="system_monitor"/>
+      <arg name="output" value="$(arg output)"/>
+      <arg name="respawn" value="$(arg respawn)"/>
+    </include>
     <!-- Maps -->
     <include file="$(find tc_common_configs)/launch/includes/map.launch">
       <arg name="namespace" value="map"/>
@@ -57,7 +67,7 @@
       <arg name="respawn" value="$(arg respawn)"/>
     </include>
     <!-- Localization -->
-    <include file="$(find dev)/launch/includes/mcl_3dl.launch">
+    <include file="$(find tc_common_configs)/launch/includes/mcl_3dl.launch">
       <arg name="namespace" value="mcl_3dl"/>
       <arg name="output" value="$(arg output)"/>
       <arg name="respawn" value="$(arg respawn)"/>
@@ -65,6 +75,7 @@
       <arg name="map_topic" value="/$(arg namespace)/map/pcd_to_pointcloud/map"/>
       <arg name="imu_topic" value="/$(arg namespace)/center_imu/adis16470_node/data_raw"/>
       <arg name="odom_topic" value="/$(arg namespace)/ypspur/odom"/>
+      <arg name="initialpose_topic" value="/initialpose"/>
     </include>
     <!-- Planner -->
     <include file="$(find tc_common_configs)/launch/includes/move_base.launch">
