@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="system_monitor"/>
+  <arg name="respawn" default="true"/>
+  <arg name="output" default="screen"/>
+  <group ns="$(arg namespace)/$(optenv HOSTNAME localhost)" clear_params="true">
+    <node pkg="system_monitor" type="cpu_monitor.py" name="cpu_monitor" ouput="$(arg output)" respawn="$(arg respawn)"/>
+    <node pkg="system_monitor" type="mem_monitor.py" name="mem_monitor" ouput="$(arg output)" respawn="$(arg respawn)"/>
+    <node pkg="system_monitor" type="net_monitor.py" name="net_monitor" ouput="$(arg output)" respawn="$(arg respawn)"/>
+  </group>
+</launch>

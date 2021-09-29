@@ -8,6 +8,7 @@
   <arg name="odom_topic" default="odom"/>
   <arg name="imu_topic" default="imu"/>
   <arg name="points_topic" default="points"/>
+  <arg name="initialpose_topic" default="initialpose"/>
   <group ns="$(arg namespace)" clear_params="true">
     <node pkg="mcl_3dl" type="mcl_3dl" name="mcl_3dl" output="$(arg output)" respawn="$(arg respawn)">
       <rosparam command="load" file="$(arg config_file)"/>
@@ -15,6 +16,7 @@
       <remap from="odom" to="$(arg odom_topic)"/>
       <remap from="imu/data" to="$(arg imu_topic)"/>
       <remap from="cloud" to="$(arg points_topic)"/>
+      <remap from="initialpose" to="$(arg initialpose_topic)"/>
     </node>
   </group>
 </launch>

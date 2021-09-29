@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="realsense"/>
+  <arg name="respawn" default="true"/>
+  <arg name="output" default="screen"/>
+  <arg name="align_depth" default="false"/>
+  <arg name="enable_sync" default="true"/>
+  <arg name="enable_rtabmap" default="false"/>
+  <arg name="enable_color" default="true" if="$(arg enable_rtabmap)"/>
+  <arg name="enable_color" default="true" unless="$(arg enable_rtabmap)"/>
+  <arg name="enable_registration" default="true" if="$(arg enable_rtabmap)"/>
+  <arg name="enable_registration" default="false" unless="$(arg enable_rtabmap)"/>
+  <arg name="enable_imu" default="false"/>
+  <arg name="enable_infra" default="false"/>
+  <arg name="nodelet_manager" default="realsense2_camera_manager"/>
+  <arg name="camera" default="d435"/>
+  <group ns="$(arg namespace)" clear_params="true">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="enable_color" value="$(arg enable_color)"/>
+      <arg name="enable_sync" value="$(arg enable_sync)"/>
+      <arg name="enable_accel" value="true" if="$(arg enable_imu)"/>
+      <arg name="enable_gyro" value="true" if="$(arg enable_imu)"/>
+      <arg name="enable_accel" value="false" unless="$(arg enable_imu)"/>
+      <arg name="enable_gyro" value="false" unless="$(arg enable_imu)"/>
+      <arg name="enable_pointcloud" value="true"/>
+      <arg name="enable_infra" value="$(arg enable_infra)"/>
+      <arg name="enable_infra1" value="true" if="$(arg enable_infra)"/>
+      <arg name="enable_infra2" value="true" if="$(arg enable_infra)"/>
+      <arg name="allow_no_texture_points" value="true"/>
+      <arg name="publish_tf" value="true"/>
+      <arg name="pointcloud_texture_stream" value="RS2_STREAM_COLOR" if="$(arg enable_color)"/>
+      <arg name="pointcloud_texture_stream" value="RS2_STREAM_ANY" unless="$(arg enable_color)"/>
+      <arg name="filters" value="pointcloud, decimation, spatial" if="$(arg enable_rtabmap)"/>
+      <arg name="filters" value="pointcloud, colorizer, decimation, spatial" unless="$(arg enable_rtabmap)"/>
+      <arg name="accel_fps" value="40"/>
+      <arg name="gyro_fps" value="40"/>
+      <arg name="depth_fps" value="-1"/>
+      <arg name="color_fps" value="-1" if="$(arg enable_color)"/>
+      <arg name="linear_accel_cov" value="0.8"/>
+      <arg name="unite_imu_method" value="copy" if="$(arg enable_imu)"/>
+      <arg name="unite_imu_method" value="" unless="$(arg enable_imu)"/>
+      <arg name="align_depth" value="$(arg align_depth)"/>
+      <arg name="camera" value="$(arg camera)"/>
+      <arg name="serial_no" value="838212070221"/>
+      <arg name="manager" value="$(arg nodelet_manager)"/>
+    </include>
+  </group>
+</launch>
